@@ -1,242 +1,128 @@
-🦷 Sistema Web de Clínica
-📌 Descrição do Projeto
+# 🦷 Sistema Web de Clínica
+
+## 📌 Descrição do Projeto
 
 Aplicação Web simples desenvolvida para gerenciamento de uma clínica, permitindo o cadastro de pacientes e o agendamento de consultas.
 
 O projeto foi desenvolvido utilizando arquitetura cliente-servidor, separando frontend e backend por meio de uma API REST.
 
-🎯 Objetivo da Atividade
+---
+
+# 🎯 Objetivo da Atividade
 
 Desenvolver uma aplicação Web contendo:
 
-Pelo menos 1 CRUD completo
+- Pelo menos 1 CRUD completo  
+- Pelo menos 1 operação utilizando transação no banco de dados  
+- API REST  
+- Controle de acesso via login/token  
+- Uso de padrões de projeto  
+- Versionamento com Git  
+- Pipeline de CI/CD  
 
-Pelo menos 1 operação utilizando transação no banco de dados
+---
 
-API REST
-
-Controle de acesso via login/token
-
-Uso de padrões de projeto
-
-Versionamento com Git
-
-Pipeline de CI/CD
-
-🏗️ Arquitetura da Aplicação
+# 🏗️ Arquitetura da Aplicação
 
 Arquitetura Monolítica com separação em camadas:
 
-Frontend (Angular SPA)
-⬇
-Backend (Laravel API REST)
-⬇
-Banco de Dados MySQL
+Frontend em Angular
+⬇  
+Backend em Laravel
+⬇  
+Banco de Dados MySQL  
 
 A comunicação entre frontend e backend é realizada via HTTP utilizando JSON.
 
-🖥️ Tecnologias Utilizadas
-Frontend
+---
 
-Angular
+# 🖥️ Tecnologias Utilizadas
 
-Angular Router
+## Frontend
 
-Angular HttpClient
-
-RxJS
-
-TypeScript
+- Angular  
+- Angular Router  
+- Angular HttpClient  
+- RxJS  
+- TypeScript  
 
 O frontend é uma Single Page Application (SPA), responsável por:
 
-Interface do usuário
+- Interface do usuário  
+- Consumo da API REST  
+- Controle de rotas  
+- Armazenamento e envio do token de autenticação  
 
-Consumo da API REST
+---
 
-Controle de rotas
+## Backend
 
-Armazenamento e envio do token de autenticação
-
-Backend
-
-PHP
-
-Laravel
-
-Eloquent ORM
-
-Laravel Sanctum
-
-Composer
+- PHP  
+- Laravel  
+- Laravel Sanctum 
+- Eloquent ORM  
+- Carbon
+- Composer  
 
 O backend é responsável por:
 
-Implementação da API REST
+- Implementação da API REST  
+- Regras de negócio  
+- Controle de autenticação  
+- Comunicação com o banco de dados  
+- Execução de transações  
 
-Regras de negócio
+---
 
-Controle de autenticação
+## Banco de Dados
 
-Comunicação com o banco de dados
-
-Execução de transações
-
-Banco de Dados
-
-MySQL
+- MySQL  
 
 Banco de dados relacional utilizado para armazenamento persistente das informações.
 
-🔐 Controle de Acesso
+---
+# 📋 Requisitos do Sistema – Clínica Web
 
-O sistema possui autenticação baseada em token utilizando Laravel Sanctum.
+## 📌 Requisitos Funcionais (RF)
 
-Fluxo de autenticação:
+Requisitos funcionais descrevem o que o sistema deve fazer.
 
-Usuário realiza login.
+### RF01 – Autenticação de Usuário
+O sistema deve permitir que usuários realizem login utilizando e-mail e senha.
 
-O backend gera um token de acesso.
+### RF02 – Cadastro de Pacientes
+O sistema deve permitir cadastrar novos pacientes contendo, no mínimo:
+- Nome
+- CPF
+- Telefone
+- Data de nascimento
 
-O frontend armazena o token.
+### RF03 – Listagem de Pacientes
+O sistema deve permitir visualizar a lista de pacientes cadastrados.
 
-O token é enviado no header das requisições protegidas:
+### RF04 – Atualização e Remoção de Pacientes
+O sistema deve permitir editar e excluir pacientes já cadastrados.
 
-Authorization: Bearer {token}
+### RF05 – Agendamento de Consultas
+O sistema deve permitir criar agendamentos vinculando um paciente a uma data e horário disponíveis.
 
-Rotas protegidas utilizam middleware de autenticação.
+---
 
-🔁 CRUD Implementado
+## 📌 Requisitos Não Funcionais (RNF)
 
-CRUD de Pacientes:
+Requisitos não funcionais descrevem como o sistema deve funcionar.
 
-Criar paciente
+### RNF01 – Segurança
+O sistema deve utilizar autenticação baseada em token (JWT via Laravel Sanctum) para proteger rotas restritas.
 
-Listar pacientes
+### RNF02 – Integridade dos Dados
+O sistema deve utilizar transações no banco de dados para garantir consistência nas operações críticas, como criação de agendamentos.
 
-Atualizar paciente
+### RNF03 – Desempenho
+As requisições da API devem responder em tempo adequado para aplicações web (tempo de resposta inferior a 2 segundos em ambiente normal).
 
-Remover paciente
+### RNF04 – Arquitetura
+O sistema deve seguir arquitetura cliente-servidor com separação entre frontend (Angular) e backend (Laravel API REST).
 
-Endpoints REST:
-
-GET    /api/pacientes
-POST   /api/pacientes
-PUT    /api/pacientes/{id}
-DELETE /api/pacientes/{id}
-
-O padrão REST foi aplicado utilizando métodos HTTP adequados.
-
-🔄 Transação Implementada
-
-Operação: Criação de Agendamento
-
-Durante a criação de um agendamento:
-
-Um novo registro é criado na tabela de agendamentos
-
-O horário selecionado é atualizado para "ocupado"
-
-Essa operação é executada dentro de uma transação do banco de dados utilizando:
-
-DB::transaction(...)
-
-Caso ocorra erro em qualquer etapa, o rollback é executado automaticamente, garantindo integridade dos dados.
-
-🧱 Padrões de Projeto Utilizados
-
-MVC (Model-View-Controller) no backend
-
-Arquitetura em Camadas
-
-RESTful API
-
-Repository implícito via Eloquent ORM
-
-SPA (Single Page Application)
-
-🔁 Versionamento e Repositório
-
-O projeto utiliza:
-
-Git para controle de versão
-
-GitHub como repositório remoto
-
-O repositório contém:
-
-Código fonte
-
-README
-
-Documentação básica
-
-Configuração de CI/CD
-
-🚀 CI/CD
-
-Foi configurado pipeline utilizando GitHub Actions.
-
-O workflow executa:
-
-Instalação de dependências
-
-Build da aplicação
-
-Execução de testes básicos (quando aplicável)
-
-Isso garante integração contínua do projeto.
-
-📂 Estrutura Geral
-
-Backend:
-
-Controllers
-
-Models
-
-Migrations
-
-Rotas API
-
-Frontend:
-
-Componentes
-
-Serviços
-
-Guards
-
-Interceptors
-
-📚 Conceitos Aplicados
-
-Aplicação Web Cliente-Servidor
-
-API REST
-
-Autenticação via Token
-
-Banco de Dados Relacional
-
-Transações
-
-Arquitetura Monolítica
-
-Integração Contínua
-
-✅ Conclusão
-
-O projeto atende aos requisitos da atividade, demonstrando:
-
-Desenvolvimento de aplicação Web completa
-
-Implementação de CRUD
-
-Uso de transações
-
-Controle de autenticação
-
-Aplicação de padrões de projeto
-
-Uso de versionamento e CI/CD
+### RNF05 – Versionamento e Integração Contínua
+O sistema deve utilizar controle de versão com Git e possuir pipeline de CI/CD configurado no GitHub Actions.
