@@ -46,13 +46,6 @@ A comunicação entre frontend e backend é realizada via HTTP utilizando JSON.
 - RxJS  
 - TypeScript  
 
-O frontend é uma Single Page Application (SPA), responsável por:
-
-- Interface do usuário  
-- Consumo da API REST  
-- Controle de rotas  
-- Armazenamento e envio do token de autenticação  
-
 ---
 
 ## Backend
