@@ -6,21 +6,6 @@ Aplicação Web simples desenvolvida para gerenciamento de uma clínica, permiti
 
 O projeto foi desenvolvido utilizando arquitetura cliente-servidor, separando frontend e backend por meio de uma API REST.
 
----
-
-# 🎯 Objetivo da Atividade
-
-Desenvolver uma aplicação Web contendo:
-
-- Pelo menos 1 CRUD completo  
-- Pelo menos 1 operação utilizando transação no banco de dados  
-- API REST  
-- Controle de acesso via login/token  
-- Uso de padrões de projeto  
-- Versionamento com Git  
-- Pipeline de CI/CD  
-
----
 
 # 🏗️ Arquitetura da Aplicação
 
