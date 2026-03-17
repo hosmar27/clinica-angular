@@ -1,8 +1,8 @@
-# 🦷 Sistema Web de Clínica
+# 🦷 Sistema Web de Clínica Dentista
 
 ## 📌 Descrição do Projeto
 
-Aplicação Web simples desenvolvida para gerenciamento de uma clínica, permitindo o cadastro de pacientes e o agendamento de consultas.
+Aplicação Web simples desenvolvida para gerenciamento de uma clínica de dentista, permitindo o cadastro de pacientes, dentistas e o agendamento de consultas.
 
 O projeto foi desenvolvido utilizando arquitetura cliente-servidor, separando frontend e backend por meio de uma API REST.
 
@@ -83,13 +83,23 @@ O sistema deve permitir cadastrar novos pacientes contendo, no mínimo:
 - Data de nascimento
 
 ### RF03 – Listagem de Pacientes
-O sistema deve permitir visualizar a lista de pacientes cadastrados.
+O sistema deve permitir os dentistas visualizar a lista de pacientes cadastrados.
 
 ### RF04 – Atualização e Remoção de Pacientes
-O sistema deve permitir editar e excluir pacientes já cadastrados.
+O sistema deve permitir os dentistas editar e excluir pacientes já cadastrados.
 
 ### RF05 – Agendamento de Consultas
 O sistema deve permitir criar agendamentos vinculando um paciente a uma data e horário disponíveis.
+
+### RF06 - Cadastro de Dentistas
+O sistema deve permitir cadastrar novos pacientes contendo, no mínimo:
+- Nome
+- CPF
+- Telefone
+- CIP (Cédula de Identidade Profissional)
+
+### RF07 - Nível de usuário
+O sistema deve ter pelo menos dois níveis de acesso (dentista e paciente).
 
 ---
 
