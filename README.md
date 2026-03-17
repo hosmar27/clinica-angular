@@ -1,123 +1,91 @@
-# 🦷 Sistema Web de Clínica Dentista
+# 🏗️ Arquitetura do Sistema – Modelo C4
 
-## 📌 Descrição do Projeto
-
-Aplicação Web simples desenvolvida para gerenciamento de uma clínica de dentista, permitindo o cadastro de pacientes, dentistas e o agendamento de consultas.
-
-O projeto foi desenvolvido utilizando arquitetura cliente-servidor, separando frontend e backend por meio de uma API REST.
-
-
-# 🏗️ Arquitetura da Aplicação
-
-Arquitetura Monolítica com separação em camadas:
-
-Frontend em Angular
-⬇  
-Backend em Laravel
-⬇  
-Banco de Dados MySQL  
-
-A comunicação entre frontend e backend é realizada via HTTP utilizando JSON.
+O sistema foi estruturado com base no Modelo C4, que organiza a arquitetura em níveis de abstração, facilitando a compreensão da aplicação.
 
 ---
 
-# 🖥️ Tecnologias Utilizadas
+## 🌍 Nível 1 – Contexto
 
-## Frontend
+Neste nível, o sistema é apresentado de forma geral, mostrando quem interage com ele.
 
-- Angular  
-- Angular Router  
-- Angular HttpClient  
-- RxJS  
-- TypeScript
+### Elementos:
 
-O frontend é uma Single Page Application (SPA), responsável por:
+- Usuário (Dentista e Paciente)
+- Sistema Web de Clínica
 
-- Interface do usuário  
-- Consumo da API REST  
-- Controle de rotas  
-- Armazenamento e envio do token de autenticação 
+### Descrição:
+
+Os usuários (com base no nível de acesso) acessam o sistema web para realizar operações como autenticação, cadastro de pacientes, cadastro de dentistas e agendamento de consultas.
 
 ---
 
-## Backend
+## 🧱 Nível 2 – Containers
 
-- PHP  
-- Laravel  
-- Laravel Sanctum 
-- Eloquent ORM  
-- Carbon
-- Composer  
+Neste nível, são apresentadas as principais partes do sistema e suas tecnologias.
 
-O backend é responsável por:
+### Containers:
 
-- Implementação da API REST  
-- Regras de negócio  
-- Controle de autenticação  
-- Comunicação com o banco de dados  
-- Execução de transações  
+- **Frontend (Angular)**
+  - Responsável pela interface do usuário
+  - Implementado como SPA (Single Page Application)
+  - Consome a API REST via HTTP/JSON
+  - Gerencia autenticação via token
 
----
+- **Backend (Laravel API)**
+  - Responsável pelas regras de negócio
+  - Implementa API REST
+  - Realiza autenticação com Laravel Sanctum
+  - Controla acesso por níveis de usuário (dentista e paciente)
+  - Executa transações no banco de dados
 
-## Banco de Dados
+- **Banco de Dados (MySQL)**
+  - Armazena dados persistentes
+  - Gerencia entidades como usuários, pacientes, dentistas e agendamentos
 
-- MySQL  
+### Fluxo de Comunicação:
 
-Banco de dados relacional utilizado para armazenamento persistente das informações.
-
----
-# 📋 Requisitos do Sistema – Clínica Web
-
-## 📌 Requisitos Funcionais (RF)
-
-Requisitos funcionais descrevem o que o sistema deve fazer.
-
-### RF01 – Autenticação de Usuário
-O sistema deve permitir que usuários realizem login utilizando e-mail e senha.
-
-### RF02 – Cadastro de Pacientes
-O sistema deve permitir cadastrar novos pacientes contendo, no mínimo:
-- Nome
-- CPF
-- Telefone
-- Data de nascimento
-
-### RF03 – Listagem de Pacientes
-O sistema deve permitir os dentistas visualizar a lista de pacientes cadastrados.
-
-### RF04 – Atualização e Remoção de Pacientes
-O sistema deve permitir os dentistas editar e excluir pacientes já cadastrados.
-
-### RF05 – Agendamento de Consultas
-O sistema deve permitir criar agendamentos vinculando um paciente a uma data e horário disponíveis.
-
-### RF06 - Cadastro de Dentistas
-O sistema deve permitir cadastrar novos pacientes contendo, no mínimo:
-- Nome
-- CPF
-- Telefone
-- CIP (Cédula de Identidade Profissional)
-
-### RF07 - Nível de usuário
-O sistema deve ter pelo menos dois níveis de acesso (dentista e paciente).
+Usuário → Angular → Laravel API → MySQL
 
 ---
 
-## 📌 Requisitos Não Funcionais (RNF)
+## 🧩 Nível 3 – Componentes
 
-Requisitos não funcionais descrevem como o sistema deve funcionar.
+Neste nível, detalha-se a estrutura interna do backend (Laravel).
 
-### RNF01 – Segurança
-O sistema deve utilizar autenticação baseada em token (JWT via Laravel Sanctum) para proteger rotas restritas.
+### Principais Componentes:
 
-### RNF02 – Integridade dos Dados
-O sistema deve utilizar transações no banco de dados para garantir consistência nas operações críticas, como criação de agendamentos.
+- **AuthController**
+  - Responsável pela autenticação de usuários
+  - Geração e validação de tokens
 
-### RNF03 – Desempenho
-As requisições da API devem responder em tempo adequado para aplicações web (tempo de resposta inferior a 2 segundos em ambiente normal).
+- **PacienteController**
+  - Gerencia o CRUD de pacientes
 
-### RNF04 – Arquitetura
-O sistema deve seguir arquitetura cliente-servidor com separação entre frontend (Angular) e backend (Laravel API REST).
+- **DentistaController**
+  - Responsável pelo cadastro e gerenciamento de dentistas
 
-### RNF05 – Versionamento e Integração Contínua
-O sistema deve utilizar controle de versão com Git e possuir pipeline de CI/CD configurado no GitHub Actions.
+- **AgendamentoController**
+  - Responsável pela criação de agendamentos
+  - Executa operações com transações no banco
+
+- **Models (Eloquent ORM)**
+  - Representam as entidades do sistema
+  - Fazem a comunicação com o banco de dados
+
+- **Middleware de Autenticação**
+  - Protege rotas
+  - Valida tokens de acesso
+
+---
+
+## 💻 Nível 4 – Código
+
+Este nível representa a implementação em código (classes, métodos e funções).
+
+Para este projeto, não é necessário detalhar esse nível, pois os níveis anteriores já são suficientes para compreensão da arquitetura.
+
+---
+
+## 🎯 Conclusão
+
+A aplicação do Modelo C4 permite uma visão clara da arquitetura do sistema, desde o contexto geral até os componentes internos, facilitando o entendimento, manutenção e evolução da aplicação.
