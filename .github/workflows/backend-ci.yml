@@ -21,14 +21,14 @@ jobs:
 
       - name: Instalar dependências
         run: composer install --prefer-dist --no-progress
-        working-directory: ./backend
+        working-directory: ./clinica-angular
 
       - name: Configurar ambiente
         run: |
           cp .env.example .env
           php artisan key:generate
-        working-directory: ./backend
+        working-directory: ./clinica-angular
 
       - name: Executar testes
         run: php artisan test
-        working-directory: ./backend
+        working-directory: ./clinica-angular
