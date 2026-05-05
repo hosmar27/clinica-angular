@@ -7,32 +7,28 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout do código
-      uses: actions/checkout@v4
+      - name: Checkout do código
+        uses: actions/checkout@v4
 
-    - name: Configurar PHP 8.2
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.2'
-        extensions: mbstring, dom, fileinfo, mysql, pdo_mysql
+      - name: Configurar PHP 8.2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
 
-    - name: Instalar Dependências do Composer
-      run: composer install --prefer-dist --no-progress --no-suggest
-      working-directory: ./backend
+      - name: Instalar dependências
+        run: composer install --prefer-dist --no-progress
+        working-directory: ./backend
 
-    - name: Preparar ambiente (Cópia do .env)
-      run: cp .env.example .env
-      working-directory: ./backend
+      - name: Configurar ambiente
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+        working-directory: ./backend
 
-    - name: Gerar Application Key
-      run: php artisan key:generate
-      working-directory: ./backend
-
-    # Opcional para o futuro: Executar testes automatizados
-    # - name: Executar Testes
-    #   run: php artisan test
-    #   working-directory: ./backend
+      - name: Executar testes
+        run: php artisan test
+        working-directory: ./backend
