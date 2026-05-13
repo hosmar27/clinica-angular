@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Patients - Dental Clinic</title>
+    <style>
+        body{ background: #f4f7fb !important; color:#222; }
+        button{ background:#0b74da; color:#fff; border:none; padding:8px 12px; border-radius:6px; cursor:pointer }
+        button:hover{ opacity:0.92 }
+        a button{ display:inline-block }
+    </style>
 </head>
 <body style="font-family: Arial, sans-serif; padding: 20px;">
 
@@ -15,9 +21,15 @@
     <main>
         <section>
             <h2>Patient Management</h2>
-            
+
             <a href="/patients/new">
-                <button type="button" style="padding: 10px; cursor: pointer;">+ Register New Patient</button>
+                <button type="button" style="padding: 10px; cursor: pointer;">Register New Patient</button>
+            </a>
+            <a href="/appointments">
+                <button type="button" style="padding: 10px; cursor: pointer; margin-left:8px;">Appointments</button>
+            </a>
+            <a href="/dentists">
+                <button type="button" style="padding: 10px; cursor: pointer; margin-left:8px;">Dentists</button>
             </a>
             <br><br>
 
@@ -41,6 +53,9 @@
                         <td>
                             <a href="/patients/edit/{{ $patient->id }}">
                                 <button type="button">Edit</button>
+                            </a>
+                            <a href="/appointments/new?patient_id={{ $patient->id }}">
+                                <button type="button">Schedule</button>
                             </a>
                         </td>
                     </tr>

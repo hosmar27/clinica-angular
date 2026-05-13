@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app="clinicApp">
+<head>
+  <meta charset="utf-8" />
+  <title>Appointments (AngularJS)</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+  <script src="app.js"></script>
+  <style>body{font-family:Arial,Helvetica,sans-serif;padding:16px} input{margin:4px}</style>
+</head>
+<body ng-controller="AppointmentsCtrl as vm">
+  <h1>Appointments</h1>
+
+  <div>
+    <h3>Create Appointment</h3>
+    <form ng-submit="vm.create()">
+      <input type="number" ng-model="vm.form.patient_id" placeholder="Patient ID" required />
+      <input type="number" ng-model="vm.form.dentist_id" placeholder="Dentist ID" required />
+      <input type="datetime-local" ng-model="vm.form.date_time" required />
+      <button type="submit">Create</button>
+    </form>
+  </div>
+
+  <h3>List</h3>
+  <ul>
+    <li ng-repeat="a in vm.appointments">
+      <strong>#{{a.id}}</strong> patient: {{a.patient_id}} dentist: {{a.dentist_id}} at {{a.date_time}}
+      <button ng-click="vm.remove(a.id)">Delete</button>
+    </li>
+  </ul>
+
+  <script>
+    // nothing here; app.js contains the app
+  </script>
+</body>
+</html>

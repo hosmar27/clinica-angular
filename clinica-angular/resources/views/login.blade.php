@@ -3,31 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <title>Login - Dental Clinic</title>
+    <style>
+        /* 1. Reset margins and use Flexbox to center everything on the screen */
+        body {
+            background: #f4f7fb !important;
+            color: #222;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 2. Wrap the login area in a clean white card */
+        main {
+            background: #ffffff;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        /* 3. Improve button sizing and spacing */
+        button {
+            background: #0b74da;
+            color: #fff;
+            border: none;
+            padding: 10px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover { opacity: 0.92; }
+
+        /* 4. Make inputs span the full width of their container */
+        input {
+            border: 1px solid #dcdcdc;
+            padding: 8px;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box; /* Ensures padding doesn't break the width */
+            margin-top: 5px;
+        }
+
+        /* 5. Align labels properly above the inputs */
+        .input-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
-<body style="font-family: Arial, sans-serif; padding: 20px;">
+<body>
 
-    <header>
-        <h1>Dental Clinic Web</h1>
-        <p>Status: System in Development (Phase 1)</p>
-        <hr>
-    </header>
-
+    <!-- Moved the header inside the main tag so it sits nicely inside the card -->
     <main>
+        <header>
+            <h1>Dental Clinic Web</h1>
+            <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 20px;">
+        </header>
+
         <section>
             <h2>System Access</h2>
-            <p>Restricted area for dentists and receptionists.</p>
-            
+
             <form action="/patients" method="GET">
-                <div>
+                <div class="input-group">
                     <label for="email">E-mail: </label>
                     <input type="email" id="email" name="email" placeholder="example@clinic.com" required>
                 </div>
-                <br>
-                <div>
+
+                <div class="input-group">
                     <label for="password">Password: </label>
                     <input type="password" id="password" name="password" placeholder="Your access password" required>
                 </div>
-                <br>
+
                 <button type="submit">Login</button>
             </form>
         </section>

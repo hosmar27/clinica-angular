@@ -7,9 +7,14 @@ use Illuminate\Support\Facades\DB;
 
 class PatientController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $patients = DB::table('patients')->orderBy('id', 'desc')->get();
+
+        if ($request->wantsJson()) {
+            return response()->json($patients);
+        }
+
         return view('patients', ['patients' => $patients]);
     }
 
@@ -21,7 +26,7 @@ class PatientController extends Controller
     public function store(Request $request)
     {
         DB::table('patients')->insert([
-            'user_id' => 1, 
+            'user_id' => 1,
             'name' => $request->name,
             'cpf' => $request->cpf,
             'phone' => $request->phone,
@@ -36,6 +41,7 @@ class PatientController extends Controller
     public function edit($id)
     {
         $patient = DB::table('patients')->where('id', $id)->first();
+
         return view('patient-form', ['patient' => $patient]);
     }
 
@@ -50,5 +56,12 @@ class PatientController extends Controller
         ]);
 
         return redirect('/patients');
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        DB::table('patients')->where('id', $id)->delete();
+
+        return redirect('/pacients');
     }
 }
