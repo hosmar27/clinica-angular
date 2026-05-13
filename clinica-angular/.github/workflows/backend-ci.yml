@@ -2,28 +2,28 @@ name: Backend CI
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main, develop ]
+    branches: [main, develop]
 
 jobs:
   check-php:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v5 # Updated from v4 to v5
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.2'
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
 
-    - name: Show PHP version
-      run: php -v
+      - name: Show PHP version
+        run: php -v
 
-    - name: Simple PHP check
-      run: php -r 'echo "PHP OK\n";'
+      - name: Simple PHP check
+        run: php -r 'echo "PHP OK\n";'
 
-    - name: Check PDO MySQL extension
-      run: |
-        php -r 'if (extension_loaded("pdo_mysql")) { echo "pdo_mysql ok\n"; } else { echo "pdo_mysql missing\n"; exit(1); }'
+      - name: Check PDO MySQL extension
+        run: |
+          php -r 'if (extension_loaded("pdo_mysql")) { echo "pdo_mysql ok\n"; } else { echo "pdo_mysql missing\n"; exit(1); }'
