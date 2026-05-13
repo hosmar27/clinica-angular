@@ -80,11 +80,11 @@ Neste nível, detalha-se a estrutura interna do backend (Laravel).
 - **AuthController:**
   - Responsável pela autenticação de usuários.
   - Geração e validação de tokens.
-- **PacienteController:**
+- **PatientController:**
   - Gerencia o CRUD de pacientes.
-- **DentistaController:**
+- **DentistController:**
   - Responsável pelo cadastro e gerenciamento de dentistas.
-- **AgendamentoController:**
+- **AppointmentController:**
   - Responsável pela criação de agendamentos.
   - Executa operações com transações no banco.
 - **Models (Eloquent ORM):**
